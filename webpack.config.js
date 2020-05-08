@@ -25,8 +25,11 @@ module.exports = {
     ]
   },
   plugins: [
-
-    new HtmlWebpackPlugin({title: 'Output Management'}),
-    new CleanWebpackPlugin()
-  ]
+    new CleanWebpackPlugin({dry: true}),
+    new HtmlWebpackPlugin({title: 'Output Management', template: './public/index.html', filename: 'index.html'}),
+  ],
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: './dist'
+  }
 }
