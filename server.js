@@ -1,15 +1,18 @@
+const path = require('path');
 const express = require('express');
-const webpack = require('webpack');
-const webpackDevMdiddleware = require('webpack-dev-middleware');
 
 const app = express();
-const config = require('./webpack.config.js');
-const compiler = webpack(config);
 
-app.use(webpackDevMdiddleware(compiler, {pathPublic: config.output.pathPublic}));
+app.use(express.static(path.resolve(__dirname, 'public')));
+app.use(express.static(path.resolve(__dirname, 'static')));
+app.use('static', express.static(path.resolve(__dirname, 'static')));
+
+app.get('/api/getmsg', (req, res, next) => {
+  res.send('get a messgae from server!');
+})
 
 app.listen(3000, (err) => {
   if (!err) {
-    console.log('start listen port 3000!');
+    console.log('The server run scuccess!');
   }
 });

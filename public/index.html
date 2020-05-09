@@ -3,8 +3,33 @@
   <head>
     <meta charset="utf-8">
     <title>Output Management</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"></head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./style.css">
+  </head>
   <body>
-    <div id="root-2"></div>
+     <h3>Express Practice</h3>
+     <p><img src="/img/pic.png" alt="" width="100px"></p>
+     <p><button onclick="sendMsg()"> click send message to server</button></p>
+     <h5 id="res">服务器内容</h5>
   </body>
+
+  <script type="text/javascript">
+    function sendMsg () {
+      var xmlhttp;
+      if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+      } else {
+        xmlhttp = new ActiveXObject('MicroSoft.XMLHTTP')
+      }
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          console.log(xmlhttp.responseText);
+          document.getElementById('res').innerHTML = xmlhttp.responseText;
+        }
+      }
+      xmlhttp.open('get', '/api/getmsg');
+      xmlhttp.send();
+    }
+    
+  </script>
 </html>
