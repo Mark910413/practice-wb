@@ -2,11 +2,10 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const  CopyWebpackPlugin = require('copy-webpack-plugin');
-
+const webpack = require('webpack');
 module.exports = {
   entry: {
     app: './src/index.js',
-    print: './src/print.js',
   },
   output: {
     filename: '[name].bundle.js',
@@ -26,14 +25,17 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin({dry: true}),
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({title: 'Output Management', template: './public/index.html', filename: 'index.html'}),
-    new CopyWebpackPlugin([{from: path.resolve(__dirname, 'static'), to: ''}])
+    new CopyWebpackPlugin([{from: path.resolve(__dirname, 'static'), to: ''}]),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin()
   ],
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
     compress: true,
     port: 3000,
+    hot: true,
   }
 }
