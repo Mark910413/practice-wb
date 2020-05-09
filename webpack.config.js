@@ -11,6 +11,7 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
   },
   mode: 'development',
   module: {
@@ -19,9 +20,7 @@ module.exports = {
       { test: /\.(png|svg|jpg|gif)$/, use: ['file-loader'] },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: [
-          'file-loader'
-        ]
+        use: ['file-loader']
       }
     ]
   },
@@ -30,10 +29,5 @@ module.exports = {
     new HtmlWebpackPlugin({title: 'Output Management', template: './public/index.html', filename: 'index.html'}),
     new CopyWebpackPlugin([{from: path.resolve(__dirname, 'static'), to: ''}])
   ],
-  devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './dist',
-    compress: true,
-    port: 3000,
-  }
+  devtool: 'inline-source-map'
 }
