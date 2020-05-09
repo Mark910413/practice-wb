@@ -32,10 +32,4 @@ module.exports = {
     new webpack.NamedModulesPlugin()
   ],
   devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './dist',
-    compress: true,
-    port: 3000,
-    hot: true,
-  }
 }
