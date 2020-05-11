@@ -1,11 +1,12 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
     app: './src/index.js',
-    print: './src/print.js'
+    another: './src/another-module.js'
   },
   output: {
     filename: '[name].bundle.js',
@@ -26,10 +27,15 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin({dry: true}),
-    new HtmlWebpackPlugin({title: 'Output Management', template: './public/index.html', filename: 'index.html'}),
+    new HtmlWebpackPlugin({title: 'Code Splitting', template: './public/index.html', filename: 'index.html'})
   ],
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist'
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    }
   }
 }
