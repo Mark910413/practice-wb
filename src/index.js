@@ -14,3 +14,12 @@ function component() {
 }
 
 document.body.appendChild(component());
+
+
+const foo = new Promise((resolve) => {
+  setTimeout(() => {
+    resolve(111);
+  }, 100);
+});
+
+console.log([1, 2, 3, 4, 6].includes(1));
