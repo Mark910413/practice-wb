@@ -18,17 +18,23 @@ module.exports = {
         ]
       },
       {
-        test: /\.js$/, use: [{
-          loader: '@babel/loader',
-          options: {
-            presets: [
-              '@babel/preset-env',
+        test: /\.js$/,
+        use: [
               {
-                'useBulitlns': 'usage',
+                  loader: 'babel-loader',
+                  options: {
+                      presets: [
+                          [
+                              '@babel/preset-env',
+                              {
+                                  useBuiltIns: 'usage',
+                                  'corejs': 3
+                              }
+                          ]
+                      ]
+                  }
               }
-            ]
-          }
-        }]
+        ]
       }
     ]
   }
