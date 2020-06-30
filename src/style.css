@@ -1,3 +1,7 @@
 .hello{
-  color: red
+  color: red;
+  background: url('~@img/pic.png') no-repeat;
+}
+.bg{
+  background: url('~@img/1.jpg') no-repeat;
 }
