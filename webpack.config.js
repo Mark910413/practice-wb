@@ -6,7 +6,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   entry: {
     app: './src/index.js',
-    another: './src/another-module.js'
+    another: './src/another-module.js',
+    shared: 'lodash'
   },
   output: {
     filename: '[name].bundle.js',
@@ -27,7 +28,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin({dry: true}),
-    new HtmlWebpackPlugin({title: 'Code Splitting', template: './public/index.html', filename: 'index.html'})
+    new HtmlWebpackPlugin({title: 'Code Splitting', template: './public/index.html', filename: 'index.html'}),
   ],
   devtool: 'inline-source-map',
   devServer: {
